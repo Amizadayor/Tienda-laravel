@@ -14,16 +14,18 @@ return new class extends Migration
         Schema::create('producto', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nombre', 100);
-            $table->integer('categoria_id')->unsigned()->nullable();
-            $table->integer('marca_id')->unsigned()->nullable();
+            $table->unsignedInteger('categoria_id')->nullable();
+            $table->unsignedInteger('pedido_id')->nullable();
+            $table->unsignedInteger('marca_id')->nullable();
+            $table->unsignedInteger('cantidad_disponible')->nullable();
             $table->decimal('precio', 10, 2)->nullable();
-            $table->integer('cantidad_disponible')->unsigned()->nullable();
             $table->string('descripcion', 255)->nullable();
             $table->string('imagen', 255)->nullable();
             $table->timestamps();
 
             $table->foreign('categoria_id')->references('id')->on('categoria')->onDelete('set null');
             $table->foreign('marca_id')->references('id')->on('marca')->onDelete('set null');
+            $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('set null');
         });
     }
 

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('pedido_id')->unsigned();
             $table->enum('metodo_envio', ['estandar', 'express', 'recogida'])->default('estandar');
             $table->string('direccion_envio', 255);
-            $table->string('metodo_pago', 100);
+            $table->string('metodo_pago', 50)->default('tarjeta');
 
             $table->foreign('pedido_id')->references('id')->on('pedido')->onDelete('cascade');
             $table->timestamps();
